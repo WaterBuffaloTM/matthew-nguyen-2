@@ -1,0 +1,19 @@
+.navbar-expand-lg {
+
+  margin-top: 9vh;
+  margin-bottom: 5vh;
+  background-color: black;
+}
+.navbar-brand {
+  color: white;
+}
+.navbar-nav .nav-link.active {
+  color: white;
+}
+h1{
+    color: grey;
+}
+
+.card{
+    margin: .5vh;
+}
