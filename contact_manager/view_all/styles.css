@@ -1,0 +1,12 @@
+.navbar-brand {
+    color: white;
+}
+
+.navbar-nav .nav-link.active {
+    color: white
+}
+
+h1{
+padding: 3vh;
+color: orange;
+}
