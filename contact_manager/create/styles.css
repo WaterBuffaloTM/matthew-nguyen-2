@@ -1,0 +1,21 @@
+.navbar-brand {
+    color: white;
+}
+
+.navbar-nav .nav-link.active {
+    color: white
+}
+
+h1{
+padding: 3vh;
+color: orange;
+}                         
+
+h2{
+    margin: 3vh;
+}
+
+.card{
+    margin: 3vh;
+    border: 3vh;
+}
