@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Three Buttons CLICK!</h1>
+
+  </body>
+</html>
+
+
+
+
+<div class = container >
+
+<button onmouseover="changePics()" class="btn btn-primary">CLICK</button>
+<button onclick="changePics1()" type="button" class="btn btn-secondary">ME</button>
+<button onclick="changePics2()" type="button" class="btn btn-success">FUCKER</button>
+
+<br>
+
+<img id="currentPic" width="100" height="100" src="" >
+</div>
+
+<script>
+const myPics = 
+[
+    
+'https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn',
+'https://static.scientificamerican.com/sciam/cache/file/9CAE9C60-8BC5-4CA3-95C180EFACDD99FD.jpg',
+'https://static.scientificamerican.com/sciam/cache/file/7A715AD8-449D-4B5A-ABA2C5D92D9B5A21_source.png',
+]
+
+
+
+const changePics = function(){
+
+    document.getElementById("currentPic").src = myPics[0]
+
+}
+
+
+const changePics1 = function(){
+    document.getElementById("currentPic").src = myPics[1]
+
+}
+const changePics2 = function(){
+    document.getElementById("currentPic").src = myPics[2]
+
+}
+
+</script>

@@ -1,4 +1,4 @@
-
+˝
 <!doctype html>
 <html lang="en">
   <head>
@@ -40,27 +40,28 @@
             <div class="mb-3">
                 <label  class="form-label" >First Name</label>
                 
-                <input  placeholder="Last Name" class="form-control">
+                <input id="firstNameInput" placeholder="First Name" required class="form-control">
               </div>
 
                 <div class="mb-3">
                     <label  class="form-label">Last Name</label>
-                    <input  placeholder="First Name"  class="form-control">
+                    <input  id="lastNameInput"placeholder="Last Name" required  class="form-control">
                  </div>
 
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input placeholder="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input id= "emailAddress"placeholder="Email" required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
               </div>
-
+ 
 
             <div class="mb-3">
               <label  class="form-label">Phone</label>
-              <input placeholder="Phone Number" type="phone number" class="form-control" >
+              <input id= "phoneNumber" placeholder="Phone Number" required type="phone number" class="form-control" >
             </div>
     
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button onclick="saveData()" type="submit" class="btn btn-primary">Submit</button>
           </form>
+          
         </div>
   
  </body>
