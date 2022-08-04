@@ -1,71 +1,36 @@
-
-
 console.log("Hello Chache");
 
-
-
-
 const updateTable = function () {
+  let newTableRows = "";
 
-let newTableRows = '';
+  const objectsStored = JSON.parse(localStorage.getItem("Contacts"));
 
-const objectsStored = JSON.parse(localStorage.getItem('Contacts'));
-
-for (let i = 0; i < objectsStored.length; i++) {
-  newTableRows += '<tr>';
-  newTableRows += '<td>' + objectsStored[i].firstname + '</td>';
-  newTableRows += '<td>' + objectsStored[i].lastname + '</td>';
-  newTableRows += '<td>' + objectsStored[i].emailaddress + '</td>';
-  newTableRows += '<td>' + objectsStored[i].phonenumber + '</td>';
-  newTableRows += '</tr>';
-
-}
-document.getElementById("rows").innerHTML = newTableRows;
-
+  for (let i = 0; i < objectsStored.length; i++) {
+    newTableRows += "<tr>";
+    newTableRows +=
+      '<td><a href="../view/?id=' +
+      i +
+      '">' +
+      objectsStored[i].firstname +
+      "</a></td>";
+    newTableRows += "<td>" + objectsStored[i].lastname + "</td>";
+    newTableRows += "<td>" + objectsStored[i].emailaddress + "</td>";
+    newTableRows += "<td>" + objectsStored[i].phonenumber + "</td>";
+    newTableRows += "</tr>";
+  }
+  document.getElementById("rows").innerHTML = newTableRows;
 };
 
-
 updateTable();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // const firstname = JSON.parse(localStorage.getItem("firstName"));
 // const lastname = JSON.parse(localStorage.getItem("lastName"));
 // const emailaddress = JSON.parse(localStorage.getItem("emailAddress"));
 // const phonenumber = JSON.parse(localStorage.getItem("phoneNumber"));
 
-
 // let mappedObject = firstname.map((item,index) => ({firstname:item, lastname: lastname [index] ||"", emailaddress: emailaddress[index] || ""}));
 
 // console.log(mappedObject);
-
-
-
 
 // var newTableRows = new Array();
 // var merging = true;
@@ -73,7 +38,7 @@ updateTable();
 
 // while (merging) {
 //     merging = false;
-    
+
 //     if (index < firstNameArray.length) {
 //         newTableRows[newTableRows.length] = firstNameArray[index];
 //         merging = true;
@@ -97,7 +62,6 @@ updateTable();
 
 // let newTableRowsFilter = newTableRows.length/indexCounter;
 
-
 // const updateTable = function () {
 
 //   // First Names
@@ -120,8 +84,6 @@ updateTable();
 // }
 // document.getElementsByClassName("lastNames").innerHTML = newLNTableRows;
 
-
-
 // for (let i = 0; i < newTableRows.length; i+=4) {
 
 //   newTableRows += "<tr>" + newTableRows[i] + "</tr>";
@@ -133,16 +95,10 @@ updateTable();
 //   newTableRows += "<tr>" + newTableRows[i] + "</tr>";
 // }
 // document.getElementById("firstName").innerHTML = newTableRows;
-
 
 // };
 
 // updateTable();
-
-
-
-
-
 
 // const updateFirstNames = function () {
 //   let firstNameRows = "";
@@ -160,38 +116,38 @@ updateTable();
 // const updateLastNames = function () {
 //     let lastNameRows = "";
 //     // const lastNameArray = JSON.parse(localStorage.getItem("lastName"));
-  
+
 //     for (let i = 0; i < lastNameArray.length; i++) {
-  
+
 //       lastNameRows += "<td>" + lastNameArray[i] + "</td>";
 //   }
-  
+
 //     document.getElementById("lastNames").innerHTML = lastNameRows;
 //   };
 //   updateLastNames();
-  
+
 //   const updateEmailAddress = function () {
 //     let emailAddress = "";
 //     // const emailAddressArray = JSON.parse(localStorage.getItem("emailAddress"));
-  
+
 //     for (let i = 0; i < emailAddressArray.length; i++) {
-  
+
 //       emailAddress += "<td>" + emailAddressArray[i] + "</td>";
 //   }
-  
+
 //     document.getElementById("emailAddress").innerHTML = emailAddress;
 //   };
 //   updateEmailAddress();
-  
+
 //   const updatePhoneNumber = function () {
 //     let phoneNumber = "";
 //     // const phoneNumberArray = JSON.parse(localStorage.getItem("phoneNumber"));
-  
+
 //     for (let i = 0; i < phoneNumberArray.length; i++) {
-  
+
 //       phoneNumber += "<td>" + phoneNumberArray[i] + "</td>";
 //   }
-  
+
 //     document.getElementById("phoneNumber").innerHTML = emailAddress;
 //   };
 //   updateEmailAddress();
