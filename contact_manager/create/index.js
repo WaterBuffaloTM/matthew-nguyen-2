@@ -8,94 +8,108 @@ const emailAddress = document.getElementById("emailAddress");
 const phoneNumber = document.getElementById("phoneNumber");
 
 
-//Making stuff required
-
-const firstNameRequired = document.getElementById("firstNameInput").required;
-const lastNameRequired = document.getElementById("lastNameInput").required;
-const emailAddressRequired = document.getElementById("emailAddress").required;
-const phoneNumberRequired = document.getElementById("phoneNumber").required;
-
-  function empty() {
-    x = firstNameInput.value;
-    y = lastNameInput.value;
-    z = emailAddress.value;
-    w = phoneNumber.value;
-    if( x=='' ||y=='' ||z=='' ||w=='')
-        alert("Enter all info");
-        return false;
-    };
-
-// all save
-
-function saveData () {
-    submitForm();
-    empty();
-
+const refreshPage = function(){
+if(!validateData){
+window.location.href="http://127.0.0.1:5500/view_all/index.html";
+}
 }
 
 
-// First name to local storage
-
-
-const submitForm = function () {
-  if (!localStorage.getItem("firstName")) {
-    localStorage.setItem("firstName", JSON.stringify([]));
-  }
+function saveData() {
+  validateData();
+  refreshPage();
+}
 
 
 
-  const saveFirstName = function () {
-    const newNameToCloud = JSON.parse(localStorage.getItem("firstName"));
-    newNameToCloud.push(firstName.value);
-    localStorage.setItem("firstName", JSON.stringify(newNameToCloud));
-    console.log(firstName.value);
-  };
-  saveFirstName();
+
+  function validateData() {
+    if( firstNameInput.value=='' ||lastNameInput.value=='' ||emailAddress.value=='' ||phoneNumber.value=='')
+        {alert("Enter all info")}
+        else {
+          submitForm()
+        }
+    };
 
 
+
+
+ 
+
+if (!localStorage.getItem("Contacts")) {
+  localStorage.setItem("Contacts", JSON.stringify([]));
+}
+
+
+const submitForm = function () 
+
+
+{
+ 
+
+  let firstNameObj = firstName.value;
+  let lastNameObj = lastName.value;
+  let emailAddressObj = emailAddress.value;
+  let phoneNumberObj= phoneNumber.value;
   
-  // Last name to local storage
-
-  if (!localStorage.getItem("lastName")) {
-    localStorage.setItem("lastName", JSON.stringify([]));
-  }
-
-  const saveLastName = function () {
-    const newLNNameToCloud = JSON.parse(localStorage.getItem("lastName"));
-    newLNNameToCloud.push(lastName.value);
-    localStorage.setItem("lastName", JSON.stringify(newLNNameToCloud));
-    console.log(lastName.value);
+  
+  const submissionObjects = {
+  "firstname": firstNameObj,
+  "lastname": lastNameObj,
+  "emailaddress": emailAddressObj,
+  "phonenumber": phoneNumberObj,
   };
-  saveLastName();
-
-  // Email to local storage
-
-  if (!localStorage.getItem("emailAddress")) {
-    localStorage.setItem("emailAddress", JSON.stringify([]));
-  }
-
-  const saveEmailAddress = function () {
-    const newEmailToCloud = JSON.parse(localStorage.getItem("emailAddress"));
-    newEmailToCloud.push(emailAddress.value);
-    localStorage.setItem("emailAddress", JSON.stringify(newEmailToCloud));
-    console.log(emailAddress.value);
+    
+    const newNameToCloud = JSON.parse(localStorage.getItem("Contacts"));
+    newNameToCloud.push(submissionObjects);
+    localStorage.setItem("Contacts", JSON.stringify(newNameToCloud));
+    submissionObjects.value='';
+    
   };
-  saveEmailAddress();
 
-  // Phone to local storage
 
-  if (!localStorage.getItem("phoneNumber")) {
-    localStorage.setItem("phoneNumber", JSON.stringify([]));
-  }
+  // // Last name to local storage
 
-  const savePhoneNumber = function () {
-    const newPhoneNumberToCloud = JSON.parse(localStorage.getItem("phoneNumber"));
-    newPhoneNumberToCloud.push(phoneNumber.value);
-    localStorage.setItem("phoneNumber", JSON.stringify( newPhoneNumberToCloud));
-    console.log(phoneNumber.value);
-  };
-  savePhoneNumber();
-};
+  // if (!localStorage.getItem("lastName")) {
+  //   localStorage.setItem("lastName", JSON.stringify([]));
+  // }
+
+  // const saveLastName = function () {
+  //   const newLNNameToCloud = JSON.parse(localStorage.getItem("lastName"));
+  //   newLNNameToCloud.push(lastName.value);
+  //   localStorage.setItem("lastName", JSON.stringify(newLNNameToCloud));
+  //   console.log(lastName.value);
+  // };
+  // saveLastName();
+
+  // // Email to local storage
+
+  // if (!localStorage.getItem("emailAddress")) {
+  //   localStorage.setItem("emailAddress", JSON.stringify([]));
+  // }
+
+  // const saveEmailAddress = function () {
+  //   const newEmailToCloud = JSON.parse(localStorage.getItem("emailAddress"));
+  //   newEmailToCloud.push(emailAddress.value);
+  //   localStorage.setItem("emailAddress", JSON.stringify(newEmailToCloud));
+  //   console.log(emailAddress.value);
+  // };
+  // saveEmailAddress();
+
+  // // Phone to local storage
+
+  // if (!localStorage.getItem("phoneNumber")) {
+  //   localStorage.setItem("phoneNumber", JSON.stringify([]));
+  // }
+
+  // const savePhoneNumber = function () {
+  //   const newPhoneNumberToCloud = JSON.parse(localStorage.getItem("phoneNumber"));
+  //   newPhoneNumberToCloud.push(phoneNumber.value);
+  //   localStorage.setItem("phoneNumber", JSON.stringify( newPhoneNumberToCloud));
+  //   console.log(phoneNumber.value);
+  // };
+  // savePhoneNumber();
+
 
 // const getInfo = function () {
 
