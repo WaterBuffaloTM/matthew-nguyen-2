@@ -7,12 +7,7 @@ const updateTable = function () {
 
   for (let i = 0; i < objectsStored.length; i++) {
     newTableRows += "<tr>";
-    newTableRows +=
-      '<td><a href="../view/?id=' +
-      i +
-      '">' +
-      objectsStored[i].firstname +
-      "</a></td>";
+    newTableRows += '<td><a href="../view/?id=' + i + '">' + objectsStored[i].firstname + "</a></td>";
     newTableRows += "<td>" + objectsStored[i].lastname + "</td>";
     newTableRows += "<td>" + objectsStored[i].emailaddress + "</td>";
     newTableRows += "<td>" + objectsStored[i].phonenumber + "</td>";
