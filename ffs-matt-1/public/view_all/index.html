@@ -122,21 +122,29 @@ const updateTable = function (res) {
     newTableRows += "</tr>";
 
   }
+   
+
   document.getElementById("rows").innerHTML = newTableRows;
 };
 
 
+const deleteFunction = function(){
+
+  let idFrom = document.getElementById("10");
+  let idFromPage = idFrom.getAttribute('id')
+    infoDelete(idFromPage);
 
 
-const deleteFunction = function () {
+}
 
 
-const sendToServer = function () {
-  console.log(record.id);
+
+const infoDelete = function (idFromPage) {
+
   console.log("About to make a network request!!!");
   firebase
     .functions()
-    .httpsCallable("deleteFunction")(record.id)
+    .httpsCallable("deleteFunction")(idFromPage)
     .then((res) => {
 
       
@@ -147,7 +155,7 @@ const sendToServer = function () {
     });
 };
 
-};
+// };
 
 
 
