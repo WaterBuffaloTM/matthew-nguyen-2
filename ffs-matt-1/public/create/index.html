@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create a Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <h1> Create a 🍆 </h1>
+   
+    <br>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Contact Manager</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Create</a> <!---href will link pages-->
+              </li>
+            </ul>      
+         
+       
+      </nav>
+
+      
+        <h2>Create Contact</h2>
+
+        <div class="container">
+        <form>
+            
+            <div class="mb-3">
+                <label  class="form-label" >First Name</label>
+                
+                <input id="firstNameInput" placeholder="First Name" required class="form-control">
+              </div>
+
+                <div class="mb-3">
+                    <label  class="form-label">Last Name</label>
+                    <input  id="lastNameInput"placeholder="Last Name" required  class="form-control">
+                 </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input id= "emailAddress"placeholder="Email" required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+ 
+
+            <div class="mb-3">
+              <label  class="form-label">Phone</label>
+              <input id= "phoneNumber" placeholder="Phone Number" required type="phone number" class="form-control" >
+            </div>
+    
+            <button onclick="saveData()" type="button" class="btn btn-primary">Submit</button>
+            <button onclick="location.href ='../view_all/';" class="btn btn-primary">View All</button>
+          </form>
+          
+        </div>
+  
+ </body>
+ <script src="/__/firebase/9.9.3/firebase-app-compat.js"></script>
+ <script src="/__/firebase/9.9.3/firebase-auth-compat.js"></script>
+ <script src="/__/firebase/9.9.3/firebase-functions-compat.js"></script>
+ <script src="/__/firebase/init.js?useEmulator=true"></script>
+
+<script>
+
+firebase.functions().useEmulator("localhost", 5001); </script>
+
+<script>
+
+console.log("Hello world");
+
+  // Hooking up the inputs to a button
+  
+  const firstName = document.getElementById("firstNameInput");
+  const lastName = document.getElementById("lastNameInput");
+  const emailAddress = document.getElementById("emailAddress");
+  const phoneNumber = document.getElementById("phoneNumber");
+  
+  const refreshPage = function () {
+    if (!validateData) {
+      window.location.href = "http://127.0.0.1:5500/view_all/index.html";
+    }
+  };
+  
+  function saveData() {
+    validateData();
+    refreshPage();
+  }
+  
+  function validateData() {
+    if (
+      firstNameInput.value == "" ||
+      lastNameInput.value == "" ||
+      emailAddress.value == "" ||
+      phoneNumber.value == ""
+    ) {
+      alert("Enter all info");
+    } else {
+      submitForm();
+    }
+  }
+  
+
+
+  
+  const submitForm = function () {
+    let firstNameObj = firstName.value;
+    let lastNameObj = lastName.value;
+    let emailAddressObj = emailAddress.value;
+    let phoneNumberObj = phoneNumber.value;
+    console.log("Hello world");
+
+    const infoToSQL = {
+      firstname: firstNameObj,
+      lastname: lastNameObj,
+      emailaddress: emailAddressObj,
+      phonenumber: phoneNumberObj,
+    };
+
+
+    
+    const createContact = function (infoToSQL) {
+    console.log('About to make a network request!!!');
+     firebase.functions().httpsCallable('createContact')
+     (infoToSQL).then((res) => {
+       console.log('network request is DONE!');
+       console.log(res);
+       // TODO: REDIRECT to view_all
+      });
+    }
+    createContact(infoToSQL);
+
+  };
+ 
+
+   
+       </script>
+
+</html>

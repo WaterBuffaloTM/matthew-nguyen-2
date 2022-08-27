@@ -8,7 +8,7 @@ const loadNews = function () {
 
 
     let evandaEle = document.createElement("img");
-    let evanda = evandaEle.src = "https://media-exp1.licdn.com/dms/image/C4E03AQGYPrzw0KM7Yg/profile-displayphoto-shrink_800_800/0/1645675253314?e=1665619200&v=beta&t=3X71t7drim_5Jcq4vLL4QJo8XQj63xlps9e51wwKbME";
+    let evanda = evandaEle.src = "https://captiveone.com/img/new-bio-photos/cj-ehrenberg.jpg";
 
     let searchBar = document.getElementById('inputBar');
     let searchValue = searchBar.value;
