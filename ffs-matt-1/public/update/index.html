@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>View a Contact</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style> 
+    button {
+        margin-top: 2vh;
+    }
+    .card{
+        margin: 3vh;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>FUCK</h1>
+
+    <h1> Update A Contact</h1>
+   
+    <br>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Contact Manager</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Update</a> <!---href will link pages-->
+              </li>
+             
+       
+      </nav>
+
+      
+        <h2> Update a Contact</h2>
+        <div class="container">
+        <div class="card" style="width: 60rem;">
+            <div class="card-header">
+              First Name
+            </div>
+            <div id="firstName">
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="card" style="width: 60rem;">
+            <div class="card-header">
+              Last Name
+            </div>
+            <div id="lastName">
+
+            </div>
+          </div>
+      </div>
+
+
+    <div class="container">
+        <div class="card" style="width: 60rem;">
+          <div class="card-header">
+            Email
+          </div>
+          <div id="emailAddress">
+
+          </div>
+        </div>
+      </div>
+      
+</div>
+    <div class="container">
+      <div class="card" style="width: 60rem;">
+        <div class="card-header">
+            Phone Number
+          </div>
+    <div id="phoneNumber">
+
+    </div>
+      </div>
+
+      <div class="container">
+        <div>
+        <button onclick="updateAContact()" class ='btn btn-primary'>
+              Update 
+            </button>
+            <button onclick="updateAContactSQL()" class ='btn btn-primary'>
+                Save Updates 
+              </button>
+      <div>
+  
+      </div>
+        </div>
+
+    <script src="/__/firebase/9.9.3/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.9.3/firebase-auth-compat.js"></script>
+    <script src="/__/firebase/9.9.3/firebase-functions-compat.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
+
+
+
+
+    <script>
+      firebase.functions().useEmulator("localhost", 5001);
+
+      const getIDFromURL = function() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const contactIndex = urlParams.get("id");
+        return contactIndex;
+      }
+
+      // step 1, get the id from the url
+      const theIdFromTheUrl = getIDFromURL();
+      
+
+      // step 2, pass the id to the cloud function 
+      // which'll return us the particular id that
+      // we've requested and included as part of the 
+      // payload.
+      firebase
+          .functions()
+          .httpsCallable("viewAContact")(theIdFromTheUrl)
+          .then((res) => {
+            console.log(res);
+            displayFirstName(res)
+            displayLastName(res)
+            displayTheEmailAddress(res)
+            displayThePhoneNumber(res)
+            
+          });
+          const displayFirstName = function (res) {
+  let firstName= "";
+  const displayFirstName = res.data[0].firstName;
+ 
+
+  firstName +=
+    "<input type='text' id='updateFN' value='"+ displayFirstName+"'></input>";
+  document.getElementById("firstName").innerHTML = firstName;
+};
+
+
+const displayLastName = function (res) {
+  let lastName= "";
+  const displayLastName = res.data[0].lastName;
+ 
+  lastName +=
+    "<input type='text' id='updateLN' value='"+ displayLastName +"'></input>";
+  document.getElementById("lastName").innerHTML = lastName;
+};
+
+
+const displayTheEmailAddress = function (res) {
+  let emailAddress = "";
+  const displayEmailAddress = res.data[0].email;
+
+  emailAddress += "<input type='text'id='updateEmail' value='"+ displayEmailAddress+"'></input>";
+  document.getElementById("emailAddress").innerHTML = emailAddress;
+};
+
+const displayThePhoneNumber = function (res) {
+  let phoneNumber = "";
+  const displayPhoneNumber = res.data[0].phoneNumber;
+
+  phoneNumber += "<input type='text' id='updatePN' value='"+ displayPhoneNumber+"'></input>";
+  document.getElementById("phoneNumber").innerHTML = phoneNumber;
+};
+
+/////////////////////////// Update Contact\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+const updateAContact = function(updateInfo)
+{
+   console.log(newInfo(updateInfo));
+
+  updateAContactSQL(newInfo(updateInfo));
+}
+
+const newInfo = function (){
+
+let fn = document.getElementById('updateFN');
+let ln = document.getElementById('updateLN');
+let email = document.getElementById('updateEmail'); 
+let pn = document.getElementById('updatePN');
+
+    let firstNameObj = fn.value;
+    let lastNameObj = ln.value;
+    let emailAddressObj = email.value;
+    let phoneNumberObj = pn.value;
+
+
+    const getIDFromURL = function() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const contactIndex = urlParams.get("id");
+        return contactIndex;
+      }
+
+
+      const theIdFromTheUrl = getIDFromURL();
+
+
+const updateInfo = {
+      firstname: firstNameObj,
+      lastname: lastNameObj,
+      emailaddress: emailAddressObj,
+      phonenumber: phoneNumberObj,
+      id: theIdFromTheUrl,
+    };
+    return updateInfo;
+
+
+}
+
+
+
+// myTimeout = setTimeout(updat,1000);
+
+
+
+
+    const updateAContactSQL = function (updateInfo) {
+console.log('about to FUCK your bitch');
+firebase
+          .functions() 
+          .httpsCallable("updateAContact")(updateInfo)
+          .then((res) => {
+            console.log(res); 
+            console.log('done')
+          });
+        };
+    </script>
+  </body>
+</html>

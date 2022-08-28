@@ -146,7 +146,7 @@ exports.viewAContact = functions.https.onCall(async (body, context) => {
 ///////////////////////////// DELETE CONTACTS////////////////////////
 
 exports.deleteFunction = functions.https.onCall(async (body, context) => {
-    console.log('made my way to the server');
+    console.log('chache');
     console.log(body);
     // connect to the MYSQL database!
 
@@ -173,11 +173,63 @@ exports.deleteFunction = functions.https.onCall(async (body, context) => {
     await connectToMySQL;
 
     const runQuery = new Promise((accept, reject) => {
-        let idFromPage = body;
-        console.log(idFromPage);
-       let myQuery = connection.query("DELETE FROM `Contacts` WHERE id = "+idFromPage+"" , function (err, result, fields) {
+        let id = body;
+        console.log(id);
+       let myQuery = connection.query("DELETE FROM `Contacts` WHERE id = "+id+"" , function (err, result, fields) {
             if (err) {
               
+                reject();
+            } 
+            else {
+                console.log(myQuery);
+                accept(result);
+            }
+        });
+    })
+    
+    const resultsOne = await runQuery;
+   return resultsOne
+  
+
+})
+
+
+///////////////////////////// DELETE CONTACTS////////////////////////
+
+exports.updateAContact = functions.https.onCall(async (body, context) => {
+    console.log('PABLO');
+    console.log(body);
+    // connect to the MYSQL database!
+
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        port: 8889,
+        database: 'Contacts_DB_Manager'
+    });
+
+    const connectToMySQL = new Promise((accept, reject) => {
+        // BLOCK START
+        connection.connect(function (connectionError) {
+            if (connectionError) {
+                
+                reject(); // calls the "catch"
+            } else {
+                accept(); // calls the "then"
+            }
+        });
+        // BLOCK END
+    });
+
+    await connectToMySQL;
+
+    const runQuery = new Promise((accept, reject) => {
+        let id = body.id;
+        console.log(id);
+       let myQuery = connection.query("UPDATE `Contacts` SET `firstName`='"+ body.firstname + "',`lastName`='"+ body.lastname +"',`email`='"+ body.emailaddress + "',`phoneNumber`='"+ body.phonenumber +"' WHERE ID = " +id , function (err, result, fields) {
+            if (err) {
+                console.log(myQuery);
                 reject();
             } 
             else {

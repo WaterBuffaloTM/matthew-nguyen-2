@@ -50,7 +50,7 @@
 
     <h2>View Contacts</h2>
     <button type="button" onclick="location.href ='../create/';" class="btn btn-primary">Click Here to Create!</button>
-    <button id="deleteALL" type="button" class="delete btn btn-primary ">Click Here to Delete!</button>
+    <button id="deleteALL" type="button" class="delete btn btn-primary ">Click Here to Delete ALL!</button>
     <table class="table">
         
         <thead>
@@ -60,6 +60,7 @@
             <th scope="col">Email</th>
             <th scope="col">Phone Number</th>
             <th scope="col">FUCK THEM?</th>
+            <th scope="col">Update Contact</th>
           </tr>
         </thead >
         <tbody id="rows">
@@ -117,8 +118,14 @@ const updateTable = function (res) {
     newTableRows += "<td>" + record.lastName + "</td>";
     newTableRows += "<td>" + record.email + "</td>";
     newTableRows += "<td>" + record.phoneNumber + "</td>";
-    newTableRows += "<td> <button onclick='deleteFunction()' type='button' class=' delete btn btn-primary' id='"+record.ID  +"'"
-      ">Click Here to Delete!</button></td>";
+    newTableRows += "<td> <button onclick='deleteFunction("+record.ID + ")' type='button' class=' delete btn btn-primary' id='"+record.ID  +"'>Click Here to Delete!</button></td>";
+
+      newTableRows +=
+      '<td><a href="../update/?id=' +
+      record.ID +
+      '"><button class="btn btn-primary">UPDATE</button></a></td>';
+
+
     newTableRows += "</tr>";
 
   }
@@ -128,26 +135,19 @@ const updateTable = function (res) {
 };
 
 
-const deleteFunction = function(){
-
-  let idFrom = document.getElementById("10");
-  let idFromPage = idFrom.getAttribute('id')
-    infoDelete(idFromPage);
-
-
+const deleteFunction = function(id){
+    infoDelete(id);
 }
 
 
 
-const infoDelete = function (idFromPage) {
+const infoDelete = function (id) {
 
   console.log("About to make a network request!!!");
   firebase
     .functions()
-    .httpsCallable("deleteFunction")(idFromPage)
+    .httpsCallable("deleteFunction")(id)
     .then((res) => {
-
-      
 
       console.log("network request is DONE!");
       console.log(res.data);
